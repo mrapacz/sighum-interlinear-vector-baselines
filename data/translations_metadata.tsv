@@ -1,0 +1,75 @@
+language	translation_id	full_name	abbreviation	year	mode
+eng	berean-literal-bible	Berean Literal Bible	BSB		Literal
+eng	bible-in-basic-english	Bible in Basic English	BBE		Dynamic
+eng	complete-jewish-bible	Complete Jewish Bible	CJB		Dynamic
+eng	disciples-literal-new-testament	Disciples’ Literal New Testament	DLNT		Literal
+eng	easyenglish-bible	EasyEnglish Bible	EASY		Dynamic
+eng	eng-new-world-translation	New World Translation	NWT		Formal
+eng	english-standard-version	English Standard Version	ESV		Formal
+eng	first-nations-version	First Nations Version	FNV		Dynamic
+eng	good-news	Good News Translation	GNT		Dynamic
+eng	jb-phillips-new-testament	The New Testament in Modern English	Phillips		Dynamic
+eng	literal-standard-version	Literal Standard Version	LSV		Literal
+eng	new-american-standard-bible	New American Standard Bible (2020)	NASB20		Formal
+eng	new-living-translation	New Living Translation	NLT		Dynamic
+eng	new-revised-standard-version	NRSV Updated Edition	NRSVue		Formal
+eng	orthodox-jewish-bible	Orthodox Jewish Bible	OJB		Paraphrase
+eng	the-message-bible	The Message	MSG		Paraphrase
+fra	bible-crampon	Bible Catholique Crampon	BCC		Formal
+fra	bible-des-peuples	La Bible des Peuples	BdP		Dynamic
+fra	bible-du-semeur	La Bible du Semeur	BDS		Dynamic
+fra	bible-francais-courant	Bible en français courant	BFC		Dynamic
+fra	bovet-bonnet	Bible Bovet-Bonnet	BBO		Literal
+fra	fra-jerusalem-bible				
+fra	fra-new-world-translation	Traduction du monde nouveau	TMN		Paraphrase
+fra	french-king-james-bible	Bible King James Française	KJF		Formal
+fra	louis-segond	Louis Segond (1910)	LSG		Formal
+fra	nouvelle-edition-de-geneve	Nouvelle Édition de Genève	NEG79		Formal
+fra	ostervald	Bible d'Ostervald	OST		Formal
+fra	parole-de-vie	Parole de Vie	PDV		Paraphrase
+fra	parole-vivante	Parole Vivante	PVV		Paraphrase
+fra	segond-21	Segond 21	S21		Formal
+ita	conferenza-episcopale-italiana	Bibbia CEI (1974)	CEI74		Formal
+ita	interconfessionale-in-lingua-corrente	Parola del Signore (TILC)	TILC		Dynamic
+ita	ita-new-world-translation	Traduzione del Nuovo Mondo	TNM		Paraphrase
+ita	italian-riveduta-2020	Nuova Riveduta 2020	NR20		Literal
+ita	la-bibbia-della-gioia	La Bibbia della Gioia	BDG		Paraphrase
+ita	la-parola-e-vita	La Parola è Vita	PEV		Dynamic
+ita	luzzi				
+ita	nuova-diodati	La Nuova Diodati	LND		Formal
+ita	nuova-riveduta	Nuova Riveduta	NR06		Literal
+ita	ricciotti	Sacra Bibbia (Ricciotti)	RIC		Formal
+ita	riveduta	Riveduta (Luzzi)	RIV		Literal
+ita	tintori	Sacra Bibbia (Tintori)	TIN		Formal
+pol	biblia-jakuba-wujka	Biblia Jakuba Wujka	BJW		Formal
+pol	biblia-krola-jakuba	Biblia Króla Jakuba	BKJ		Formal
+pol	biblia-poznanska	Biblia Poznańska	BP		Formal
+pol	biblia-tysiaclecia	Biblia Tysiąclecia (V wyd.)	BT5		Formal
+pol	biblia-warszawska	Biblia Warszawska	BW		Formal
+pol	biblia-warszawsko-praska	Biblia Warszawsko-Praska	BWP		Dynamic
+pol	dabrowski-greka	Przekład Dąbrowskiego	DĄB		Literal
+pol	eib-nowe-przymierze-literal	EIB Przekład Dosłowny	EIB-PD		Literal
+pol	eib-nowe-przymierze-literary	EIB Przekład Literacki	EIB		Formal
+pol	mariawici	Przekład Mariawicki	MAR		Paraphrase
+pol	nowa-biblia-gdanska	Nowa Biblia Gdańska	NBG		Literal
+pol	nowy-przeklad-dynamiczny	Nowy Przekład Dynamiczny	NPD		Dynamic
+pol	pol-new-world-translation	Przekład Nowego Świata	PNŚ		Paraphrase
+pol	slowo-zycia	Słowo Życia	SŻ		Paraphrase
+pol	szczepanski	Nowy Testament (Szczepański)	SZCZ		Literal
+pol	uwspolczesniona-biblia-gdanska	Uwspółcześniona Biblia Gdańska	UBG		Formal
+spa	biblia-de-america	La Biblia de América	BAME		Dynamic
+spa	biblia-del-jubileo	Biblia del Jubileo	JBS		Formal
+spa	dios-habla-hoy	Dios Habla Hoy	DHH		Dynamic
+spa	hb-pratt	Versión Moderna (Pratt)	VM		Literal
+spa	junemann-bible	Biblia Jünemann (Septuaginta)	JUN		Paraphrase
+spa	la-biblia-de-las-americas	La Biblia de las Américas	LBLA		Literal
+spa	la-biblia-latinoamericana	Biblia Latinoamericana	BL95		Paraphrase
+spa	la-palabra	La Palabra (España)	BLP		Dynamic
+spa	lenguaje-actual	Traducción en Lenguaje Actual	TLA		Paraphrase
+spa	nueva-biblia-de-las-americas	Nueva Biblia de las Américas	NBLA		Literal
+spa	nueva-traduccion-viviente	Nueva Traducción Viviente	NTV		Dynamic
+spa	nueva-version-internacional	Nueva Versión Internacional	NVI		Dynamic
+spa	palabra-de-dios-para-todos	Palabra de Dios para Todos	PDT		Paraphrase
+spa	peshitta-espanol	Biblia Peshitta en Español	PES		Paraphrase
+spa	reina-valera-revisada	Reina-Valera 1960	RVR60		Formal
+spa	spa-new-world-translation	Traducción del Nuevo Mundo	TNM		Paraphrase

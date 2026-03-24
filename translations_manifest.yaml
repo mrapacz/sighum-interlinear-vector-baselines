@@ -1,0 +1,557 @@
+model: Qwen/Qwen3-Embedding-8B
+hf_model_dir: QwenXxXQwen3-Embedding-8B
+source_repo: mrapacz/targum-corpus
+translations:
+- canonical_id: berean-literal-bible
+  language: eng
+  hf_site: biblehub.com
+  hf_translation_id: blb
+  full_name: Berean Literal Bible
+  abbreviation: BSB
+  mode: Literal
+- canonical_id: bible-in-basic-english
+  language: eng
+  hf_site: ebible.org
+  hf_translation_id: engBBE
+  full_name: Bible in Basic English
+  abbreviation: BBE
+  mode: Dynamic
+- canonical_id: complete-jewish-bible
+  language: eng
+  hf_site: obohu.cz
+  hf_translation_id: CJB
+  full_name: Complete Jewish Bible
+  abbreviation: CJB
+  mode: Dynamic
+- canonical_id: disciples-literal-new-testament
+  language: eng
+  hf_site: biblegateway.com
+  hf_translation_id: Disciples-Literal-New-Testament-DLNT
+  full_name: Disciples’ Literal New Testament
+  abbreviation: DLNT
+  mode: Literal
+- canonical_id: easyenglish-bible
+  language: eng
+  hf_site: bible.com
+  hf_translation_id: '2079'
+  full_name: EasyEnglish Bible
+  abbreviation: EASY
+  mode: Dynamic
+- canonical_id: eng-new-world-translation
+  language: eng
+  hf_site: obohu.cz
+  hf_translation_id: NWTEN
+  full_name: New World Translation
+  abbreviation: NWT
+  mode: Formal
+- canonical_id: english-standard-version
+  language: eng
+  hf_site: bible.is
+  hf_translation_id: ENGESV
+  full_name: English Standard Version
+  abbreviation: ESV
+  mode: Formal
+- canonical_id: first-nations-version
+  language: eng
+  hf_site: bible.com
+  hf_translation_id: '3633'
+  full_name: First Nations Version
+  abbreviation: FNV
+  mode: Dynamic
+- canonical_id: good-news
+  language: eng
+  hf_site: bible.com
+  hf_translation_id: '296'
+  full_name: Good News Translation
+  abbreviation: GNT
+  mode: Dynamic
+- canonical_id: interlinear-biblehub.com
+  language: eng
+  hf_site: biblehub.com
+  hf_translation_id: interlinear-biblehub.com
+  full_name: BibleHub (Interlinear)
+  abbreviation: null
+  mode: Literal
+- canonical_id: jb-phillips-new-testament
+  language: eng
+  hf_site: biblegateway.com
+  hf_translation_id: JB-Phillips-New-Testament
+  full_name: The New Testament in Modern English
+  abbreviation: Phillips
+  mode: Dynamic
+- canonical_id: literal-standard-version
+  language: eng
+  hf_site: ebible.org
+  hf_translation_id: englsv
+  full_name: Literal Standard Version
+  abbreviation: LSV
+  mode: Literal
+- canonical_id: new-american-standard-bible
+  language: eng
+  hf_site: bible.is
+  hf_translation_id: ENGNAS
+  full_name: New American Standard Bible (2020)
+  abbreviation: NASB20
+  mode: Formal
+- canonical_id: new-living-translation
+  language: eng
+  hf_site: bible.is
+  hf_translation_id: ENGNLT
+  full_name: New Living Translation
+  abbreviation: NLT
+  mode: Dynamic
+- canonical_id: new-revised-standard-version
+  language: eng
+  hf_site: bible.com
+  hf_translation_id: '2015'
+  full_name: NRSV Updated Edition
+  abbreviation: NRSVue
+  mode: Formal
+- canonical_id: orthodox-jewish-bible
+  language: eng
+  hf_site: bible.com
+  hf_translation_id: '130'
+  full_name: Orthodox Jewish Bible
+  abbreviation: OJB
+  mode: Paraphrase
+- canonical_id: the-message-bible
+  language: eng
+  hf_site: bible.com
+  hf_translation_id: '97'
+  full_name: The Message
+  abbreviation: MSG
+  mode: Paraphrase
+- canonical_id: bible-crampon
+  language: fra
+  hf_site: obohu.cz
+  hf_translation_id: FBAC
+  full_name: Bible Catholique Crampon
+  abbreviation: BCC
+  mode: Formal
+- canonical_id: bible-des-peuples
+  language: fra
+  hf_site: obohu.cz
+  hf_translation_id: BDP
+  full_name: La Bible des Peuples
+  abbreviation: BdP
+  mode: Dynamic
+- canonical_id: bible-du-semeur
+  language: fra
+  hf_site: bible.is
+  hf_translation_id: FRABIB
+  full_name: La Bible du Semeur
+  abbreviation: BDS
+  mode: Dynamic
+- canonical_id: bible-francais-courant
+  language: fra
+  hf_site: bible.com
+  hf_translation_id: '63'
+  full_name: Bible en français courant
+  abbreviation: BFC
+  mode: Dynamic
+- canonical_id: bovet-bonnet
+  language: fra
+  hf_site: obohu.cz
+  hf_translation_id: FBBB
+  full_name: Bible Bovet-Bonnet
+  abbreviation: BBO
+  mode: Literal
+- canonical_id: fra-new-world-translation
+  language: fra
+  hf_site: jw.org
+  hf_translation_id: nwt-fra
+  full_name: Traduction du monde nouveau
+  abbreviation: TMN
+  mode: Paraphrase
+- canonical_id: french-king-james-bible
+  language: fra
+  hf_site: obohu.cz
+  hf_translation_id: KJF
+  full_name: Bible King James Française
+  abbreviation: KJF
+  mode: Formal
+- canonical_id: interlinear-editeurbpc.com
+  language: fra
+  hf_site: editeurbpc.com
+  hf_translation_id: interlinear-editeurbpc.com
+  full_name: Editeur BPC (Interlinear)
+  abbreviation: null
+  mode: Literal
+- canonical_id: fra-jerusalem-bible
+  language: fra
+  hf_site: obohu.cz
+  hf_translation_id: FBJ
+  full_name: null
+  abbreviation: null
+  mode: null
+- canonical_id: louis-segond
+  language: fra
+  hf_site: bible.is
+  hf_translation_id: FRNTLS
+  full_name: Louis Segond (1910)
+  abbreviation: LSG
+  mode: Formal
+- canonical_id: nouvelle-edition-de-geneve
+  language: fra
+  hf_site: bible.audio
+  hf_translation_id: NEG
+  full_name: Nouvelle Édition de Genève
+  abbreviation: NEG79
+  mode: Formal
+- canonical_id: ostervald
+  language: fra
+  hf_site: bible.is
+  hf_translation_id: FRNO96
+  full_name: Bible d'Ostervald
+  abbreviation: OST
+  mode: Formal
+- canonical_id: parole-de-vie
+  language: fra
+  hf_site: bible.is
+  hf_translation_id: FRAPDF
+  full_name: Parole de Vie
+  abbreviation: PDV
+  mode: Paraphrase
+- canonical_id: parole-vivante
+  language: fra
+  hf_site: bible.audio
+  hf_translation_id: PVI
+  full_name: Parole Vivante
+  abbreviation: PVV
+  mode: Paraphrase
+- canonical_id: segond-21
+  language: fra
+  hf_site: bible.com
+  hf_translation_id: '152'
+  full_name: Segond 21
+  abbreviation: S21
+  mode: Formal
+- canonical_id: conferenza-episcopale-italiana
+  language: ita
+  hf_site: obohu.cz
+  hf_translation_id: CEI
+  full_name: Bibbia CEI (1974)
+  abbreviation: CEI74
+  mode: Formal
+- canonical_id: interconfessionale-in-lingua-corrente
+  language: ita
+  hf_site: bible.com
+  hf_translation_id: '1196'
+  full_name: Parola del Signore (TILC)
+  abbreviation: TILC
+  mode: Dynamic
+- canonical_id: interlinear-altervista.org
+  language: ita
+  hf_site: altervista.org
+  hf_translation_id: interlinear-altervista.org
+  full_name: Altervista (Interlinear)
+  abbreviation: null
+  mode: Literal
+- canonical_id: ita-new-world-translation
+  language: ita
+  hf_site: jw.org
+  hf_translation_id: nwt-ita
+  full_name: Traduzione del Nuovo Mondo
+  abbreviation: TNM
+  mode: Paraphrase
+- canonical_id: italian-riveduta-2020
+  language: ita
+  hf_site: laparola.net
+  hf_translation_id: r2
+  full_name: Nuova Riveduta 2020
+  abbreviation: NR20
+  mode: Literal
+- canonical_id: la-bibbia-della-gioia
+  language: ita
+  hf_site: biblegateway.com
+  hf_translation_id: La-Bibbia-della-Gioia-BDG
+  full_name: La Bibbia della Gioia
+  abbreviation: BDG
+  mode: Paraphrase
+- canonical_id: la-parola-e-vita
+  language: ita
+  hf_site: laparola.net
+  hf_translation_id: lpv
+  full_name: La Parola è Vita
+  abbreviation: PEV
+  mode: Dynamic
+- canonical_id: luzzi
+  language: ita
+  hf_site: laparola.net
+  hf_translation_id: luzzi
+  full_name: null
+  abbreviation: null
+  mode: null
+- canonical_id: nuova-diodati
+  language: ita
+  hf_site: biblegateway.com
+  hf_translation_id: La-Nuova-Diodati-LND
+  full_name: La Nuova Diodati
+  abbreviation: LND
+  mode: Formal
+- canonical_id: nuova-riveduta
+  language: ita
+  hf_site: bible.com
+  hf_translation_id: '122'
+  full_name: Nuova Riveduta
+  abbreviation: NR06
+  mode: Literal
+- canonical_id: ricciotti
+  language: ita
+  hf_site: laparola.net
+  hf_translation_id: ricciotti
+  full_name: Sacra Bibbia (Ricciotti)
+  abbreviation: RIC
+  mode: Formal
+- canonical_id: riveduta
+  language: ita
+  hf_site: bible.is
+  hf_translation_id: ITAR27
+  full_name: Riveduta (Luzzi)
+  abbreviation: RIV
+  mode: Literal
+- canonical_id: tintori
+  language: ita
+  hf_site: laparola.net
+  hf_translation_id: tintori
+  full_name: Sacra Bibbia (Tintori)
+  abbreviation: TIN
+  mode: Formal
+- canonical_id: biblia-jakuba-wujka
+  language: pol
+  hf_site: bibliepolskie.pl
+  hf_translation_id: WUJEK.1923
+  full_name: Biblia Jakuba Wujka
+  abbreviation: BJW
+  mode: Formal
+- canonical_id: biblia-krola-jakuba
+  language: pol
+  hf_site: bibliepolskie.pl
+  hf_translation_id: KJV.POL.2025
+  full_name: Biblia Króla Jakuba
+  abbreviation: BKJ
+  mode: Formal
+- canonical_id: biblia-poznanska
+  language: pol
+  hf_site: obohu.cz
+  hf_translation_id: POZ
+  full_name: Biblia Poznańska
+  abbreviation: BP
+  mode: Formal
+- canonical_id: biblia-tysiaclecia
+  language: pol
+  hf_site: obohu.cz
+  hf_translation_id: PBT
+  full_name: Biblia Tysiąclecia (V wyd.)
+  abbreviation: BT5
+  mode: Formal
+- canonical_id: biblia-warszawska
+  language: pol
+  hf_site: obohu.cz
+  hf_translation_id: PBW
+  full_name: Biblia Warszawska
+  abbreviation: BW
+  mode: Formal
+- canonical_id: biblia-warszawsko-praska
+  language: pol
+  hf_site: obohu.cz
+  hf_translation_id: PBWP
+  full_name: Biblia Warszawsko-Praska
+  abbreviation: BWP
+  mode: Dynamic
+- canonical_id: dabrowski-greka
+  language: pol
+  hf_site: bibliepolskie.pl
+  hf_translation_id: DĄBR.GR.1961
+  full_name: Przekład Dąbrowskiego
+  abbreviation: DĄB
+  mode: Literal
+- canonical_id: eib-nowe-przymierze-literal
+  language: pol
+  hf_site: bible.com
+  hf_translation_id: '3881'
+  full_name: EIB Przekład Dosłowny
+  abbreviation: EIB-PD
+  mode: Literal
+- canonical_id: eib-nowe-przymierze-literary
+  language: pol
+  hf_site: bible.is
+  hf_translation_id: POLNCV
+  full_name: EIB Przekład Literacki
+  abbreviation: EIB
+  mode: Formal
+- canonical_id: interlinear-oblubienica.eu
+  language: pol
+  hf_site: oblubienica.eu
+  hf_translation_id: interlinear-oblubienica.eu
+  full_name: Oblubienica (Interlinear)
+  abbreviation: null
+  mode: Literal
+- canonical_id: mariawici
+  language: pol
+  hf_site: bibliepolskie.pl
+  hf_translation_id: MARIAWICI
+  full_name: Przekład Mariawicki
+  abbreviation: MAR
+  mode: Paraphrase
+- canonical_id: nowa-biblia-gdanska
+  language: pol
+  hf_site: obohu.cz
+  hf_translation_id: NBG
+  full_name: Nowa Biblia Gdańska
+  abbreviation: NBG
+  mode: Literal
+- canonical_id: nowy-przeklad-dynamiczny
+  language: pol
+  hf_site: bible.com
+  hf_translation_id: '3551'
+  full_name: Nowy Przekład Dynamiczny
+  abbreviation: NPD
+  mode: Dynamic
+- canonical_id: pol-new-world-translation
+  language: pol
+  hf_site: jw.org
+  hf_translation_id: nwt-pol
+  full_name: Przekład Nowego Świata
+  abbreviation: PNŚ
+  mode: Paraphrase
+- canonical_id: slowo-zycia
+  language: pol
+  hf_site: ebible.org
+  hf_translation_id: polsz
+  full_name: Słowo Życia
+  abbreviation: SŻ
+  mode: Paraphrase
+- canonical_id: szczepanski
+  language: pol
+  hf_site: bibliepolskie.pl
+  hf_translation_id: SZCZEPAŃSKI
+  full_name: Nowy Testament (Szczepański)
+  abbreviation: SZCZ
+  mode: Literal
+- canonical_id: uwspolczesniona-biblia-gdanska
+  language: pol
+  hf_site: ebible.org
+  hf_translation_id: polubg
+  full_name: Uwspółcześniona Biblia Gdańska
+  abbreviation: UBG
+  mode: Formal
+- canonical_id: biblia-de-america
+  language: spa
+  hf_site: bible.is
+  hf_translation_id: SPABDA
+  full_name: La Biblia de América
+  abbreviation: BAME
+  mode: Dynamic
+- canonical_id: biblia-del-jubileo
+  language: spa
+  hf_site: bible.com
+  hf_translation_id: '1076'
+  full_name: Biblia del Jubileo
+  abbreviation: JBS
+  mode: Formal
+- canonical_id: dios-habla-hoy
+  language: spa
+  hf_site: bible.is
+  hf_translation_id: SPADHH
+  full_name: Dios Habla Hoy
+  abbreviation: DHH
+  mode: Dynamic
+- canonical_id: hb-pratt
+  language: spa
+  hf_site: obohu.cz
+  hf_translation_id: PRATT
+  full_name: Versión Moderna (Pratt)
+  abbreviation: VM
+  mode: Literal
+- canonical_id: interlinear-bibliatodo.com
+  language: spa
+  hf_site: bibliatodo.com
+  hf_translation_id: interlinear-bibliatodo.com
+  full_name: Bibliatodo (Interlinear)
+  abbreviation: null
+  mode: Literal
+- canonical_id: junemann-bible
+  language: spa
+  hf_site: obohu.cz
+  hf_translation_id: JUN
+  full_name: Biblia Jünemann (Septuaginta)
+  abbreviation: JUN
+  mode: Paraphrase
+- canonical_id: la-biblia-de-las-americas
+  language: spa
+  hf_site: bible.is
+  hf_translation_id: SPNBLA
+  full_name: La Biblia de las Américas
+  abbreviation: LBLA
+  mode: Literal
+- canonical_id: la-biblia-latinoamericana
+  language: spa
+  hf_site: obohu.cz
+  hf_translation_id: BLA
+  full_name: Biblia Latinoamericana
+  abbreviation: BL95
+  mode: Paraphrase
+- canonical_id: la-palabra
+  language: spa
+  hf_site: bible.is
+  hf_translation_id: SPNLPS
+  full_name: La Palabra (España)
+  abbreviation: BLP
+  mode: Dynamic
+- canonical_id: lenguaje-actual
+  language: spa
+  hf_site: bible.is
+  hf_translation_id: SPNTLA
+  full_name: Traducción en Lenguaje Actual
+  abbreviation: TLA
+  mode: Paraphrase
+- canonical_id: nueva-biblia-de-las-americas
+  language: spa
+  hf_site: bible.com
+  hf_translation_id: '103'
+  full_name: Nueva Biblia de las Américas
+  abbreviation: NBLA
+  mode: Literal
+- canonical_id: nueva-traduccion-viviente
+  language: spa
+  hf_site: bible.is
+  hf_translation_id: SPANTV
+  full_name: Nueva Traducción Viviente
+  abbreviation: NTV
+  mode: Dynamic
+- canonical_id: nueva-version-internacional
+  language: spa
+  hf_site: bible.is
+  hf_translation_id: SPANVI
+  full_name: Nueva Versión Internacional
+  abbreviation: NVI
+  mode: Dynamic
+- canonical_id: palabra-de-dios-para-todos
+  language: spa
+  hf_site: bible.is
+  hf_translation_id: SPAERV
+  full_name: Palabra de Dios para Todos
+  abbreviation: PDT
+  mode: Paraphrase
+- canonical_id: peshitta-espanol
+  language: spa
+  hf_site: obohu.cz
+  hf_translation_id: PESE
+  full_name: Biblia Peshitta en Español
+  abbreviation: PES
+  mode: Paraphrase
+- canonical_id: reina-valera-revisada
+  language: spa
+  hf_site: biblegateway.com
+  hf_translation_id: Reina-Valera-Revisada-RVR
+  full_name: Reina-Valera 1960
+  abbreviation: RVR60
+  mode: Formal
+- canonical_id: spa-new-world-translation
+  language: spa
+  hf_site: jw.org
+  hf_translation_id: nwt-spa
+  full_name: Traducción del Nuevo Mundo
+  abbreviation: TNM
+  mode: Paraphrase

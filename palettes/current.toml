@@ -1,0 +1,35 @@
+# Palette: Warm
+# Cream background with terracotta accents — earthy, inviting.
+
+[surface]
+background = "#FDF6EC" # warm cream
+panel = "#F5E6D3"      # light terracotta tint
+
+[text]
+heading = "#3B2F2F" # dark brown
+body = "#5C4A42"    # medium brown
+caption = "#8C7B72" # muted brown
+rule = "#D4C4B0"    # warm grey rule
+
+[accent]
+primary = "#C75B39" # terracotta
+
+[gradient]
+start = "#FFFFFF"
+end = "#C75B39"   # terracotta gradient
+
+[heatmap]
+p001 = "#C75B39" # terracotta (darkest)
+p01 = "#D4896E"
+p05 = "#E8BCA8"
+ns = "#F5E6D3"
+
+[figure]
+fill = "#3B2F2F"    # dark brown
+scatter = "#C75B39" # terracotta
+
+[strategy]
+literal = "#3B2F2F"
+formal = "#3B2F2F"
+dynamic = "#3B2F2F"
+paraphrase = "#3B2F2F"
