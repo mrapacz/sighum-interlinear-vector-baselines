@@ -6,7 +6,7 @@ Maciej Rapacz and Aleksander Smywiński-Pohl — AGH University of Kraków
 
 Published at the [10th Joint SIGHUM Workshop](https://sighum.wordpress.com/events/latech-clfl-2026/) @ [EACL 2026](https://2026.eacl.org/) (Rabat, Morocco)
 
-[📄 Paper (ACL Anthology)](https://aclanthology.org/2026.latechclfl-1.22/) · [📊 Embeddings (HuggingFace)](https://huggingface.co/datasets/mrapacz/sighum-interlinear-vector-baselines) · [📚 Targum Corpus (GitHub)](https://github.com/mrapacz/targum-corpus) · [📚 Targum Corpus (HuggingFace)](https://huggingface.co/datasets/mrapacz/targum-corpus)
+[📄 Paper (ACL Anthology)](https://aclanthology.org/2026.latechclfl-1.22/) · [🪧 Poster](poster/poster.pdf) · [📊 Embeddings (HuggingFace)](https://huggingface.co/datasets/mrapacz/sighum-interlinear-vector-baselines) · [📚 Targum Corpus (GitHub)](https://github.com/mrapacz/targum-corpus) · [📚 Targum Corpus (HuggingFace)](https://huggingface.co/datasets/mrapacz/targum-corpus)
 
 ---
 
