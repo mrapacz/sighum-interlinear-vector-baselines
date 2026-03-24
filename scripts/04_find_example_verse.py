@@ -249,6 +249,73 @@ def _compute_distances(
     return pl.DataFrame(rows)
 
 
+def _local_corpus_path(entry: dict, data_dir: Path) -> Path | None:
+    """Resolve the local JSONL corpus file for a manifest entry."""
+    lang = entry["language"]
+    site = entry["hf_site"]
+    tid = entry["hf_translation_id"]
+    cid = entry["canonical_id"]
+
+    # Interlinear lives in a separate directory with a verse-level variant
+    if "interlinear" in cid:
+        interlinear_dir = data_dir / "interlinear" / "export"
+        verses_file = interlinear_dir / f"interlinear-{site}.verses.jsonl"
+        if verses_file.exists():
+            return verses_file
+        return None
+
+    corpus_dir = data_dir / "bible" / "exporter" / "full" / "corpora"
+    return corpus_dir / site / lang / f"{tid}.jsonl"
+
+
+def _load_verse_texts(
+    manifest: dict, lang: str, console: Console
+) -> dict[tuple[str, str], str]:
+    """Load verse texts from local targum data directory.
+
+    Uses $TARGUM_BASE_DATA_DIR (default: ./data) to find JSONL corpus files.
+    These include copyrighted texts not available on HuggingFace — intended
+    for local analysis only, not for redistribution.
+    """
+    import json
+    import os
+
+    TEXT_CACHE_DIR = REPO_ROOT / ".cache" / "verse-texts"
+    TEXT_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    cache_file = TEXT_CACHE_DIR / f"texts_{lang}.json"
+
+    if cache_file.exists():
+        console.print(f"  Using cached texts [dim]{cache_file}[/dim]")
+        raw = json.loads(cache_file.read_text())
+        return {tuple(k.split("|", 1)): v for k, v in raw.items()}
+
+    data_dir = Path(os.environ.get("TARGUM_BASE_DATA_DIR", "data"))
+    entries = [
+        e for e in manifest["translations"] if e["language"] == lang
+    ]
+
+    texts: dict[tuple[str, str], str] = {}
+    for entry in entries:
+        cid = entry["canonical_id"]
+        local_path = _local_corpus_path(entry, data_dir)
+        if local_path is None or not local_path.exists():
+            console.print(f"  [yellow]Not found: {cid} ({local_path})[/yellow]")
+            continue
+        console.print(f"  Loading: {cid}", style="dim")
+        for line in local_path.read_text().splitlines():
+            if not line.strip():
+                continue
+            rec = json.loads(line)
+            ref = f"{rec['book']} {rec['chapter']}:{rec['verse']}"
+            texts[(ref, cid)] = rec.get("text", "")
+
+    # Cache as flat dict with "ref|cid" keys
+    serializable = {f"{ref}|{cid}": t for (ref, cid), t in texts.items()}
+    cache_file.write_text(json.dumps(serializable, ensure_ascii=False))
+    console.print(f"  Cached {len(texts)} verse texts ({len(entries)} translations)")
+    return texts
+
+
 # ── Display helpers ───────────────────────────────────────────────
 
 
@@ -319,6 +386,10 @@ def main(
     console.print("[bold]Computing distances to interlinear…[/bold]")
     dist_df = _compute_distances(df, manifest, lang)
     console.print(f"  {len(dist_df)} distance pairs")
+
+    # ── Load verse texts ──────────────────────────────────────────
+    console.print("[bold]Loading verse texts…[/bold]")
+    verse_texts = _load_verse_texts(manifest, lang, console)
 
     # ── Single verse mode ─────────────────────────────────────────
     if verse is not None:
@@ -420,8 +491,13 @@ def main(
             group = verse_data.filter(pl.col("mode") == strategy)
             for vrow in group.iter_rows(named=True):
                 abbr = vrow["abbreviation"]
+                tid = vrow["translation_id"]
                 dist = vrow["dist"]
-                trans_lines.append(f"{strategy} ({abbr}) {dist:.3f}")
+                text = verse_texts.get((ref, tid), "")
+                line = f"{strategy} ({abbr}) {dist:.3f}"
+                if text:
+                    line += f": {text}"
+                trans_lines.append(line)
 
         cells = [
             str(rank),
@@ -475,9 +551,11 @@ def main(
                 group = verse_data.filter(pl.col("mode") == strategy)
                 for vrow in group.iter_rows(named=True):
                     abbr = vrow["abbreviation"]
+                    tid = vrow["translation_id"]
                     dist = vrow["dist"]
+                    text = verse_texts.get((ref, tid), "")
                     lines.append(
-                        f"  [{strategy:12s}] {abbr:8s} (d={dist:.3f})"
+                        f"  [{strategy:12s}] {abbr:8s} (d={dist:.3f}): {text}"
                     )
             lines.append("")
 
