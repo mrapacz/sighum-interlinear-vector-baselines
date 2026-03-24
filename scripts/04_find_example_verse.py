@@ -373,21 +373,32 @@ def main(
         f"(out of {len(pivoted)} with all 4 groups)"
     )
 
-    # ── Optional Greek text ───────────────────────────────────────
-    greek_verses: dict[str, str] = {}
-    if greek:
-        console.print("[bold]Fetching Greek source text (SBLGNT)…[/bold]")
-        greek_verses = fetch_greek_verses(console)
+    # ── Greek text (always fetched — used for sorting by length) ──
+    console.print("[bold]Fetching Greek source text (SBLGNT)…[/bold]")
+    greek_verses = fetch_greek_verses(console)
+
+    # ── Sort: shortest Greek first, then by spread ────────────────
+    monotonic = monotonic.with_columns(
+        pl.col("verse")
+        .map_elements(
+            lambda v: len(greek_verses.get(v, "")), return_dtype=pl.Int64
+        )
+        .alias("greek_len")
+    ).sort(["greek_len", "spread"], descending=[False, True])
+
+    # Drop verses with no Greek text (SBLGNT numbering gaps)
+    monotonic = monotonic.filter(pl.col("greek_len") > 0)
 
     # ── Display top N ─────────────────────────────────────────────
     top_df = monotonic.head(top)
 
     table = Table(
-        title=f"Top {top} monotonic verses by spread (8B model)",
+        title=f"Top {top} monotonic verses — shortest Greek, then spread (8B)",
         show_lines=True,
     )
     table.add_column("Rank", style="bold", width=4)
     table.add_column("Ref", style="cyan bold", width=12)
+    table.add_column("Len", style="yellow", width=4)
     table.add_column("Spread", style="green", width=8)
     table.add_column("Group Means", width=40)
     if greek:
@@ -415,6 +426,7 @@ def main(
         cells = [
             str(rank),
             ref,
+            str(row["greek_len"]),
             f"{row['spread']:.3f}",
             means_str,
         ]
@@ -434,6 +446,7 @@ def main(
         lines = [
             "# Monotonic Verse Examples (8B model)",
             "# Monotonic = group means: Literal < Formal < Dynamic < Paraphrase",
+            "# Sorted by: shortest Greek text first, then by spread",
             f"# {len(monotonic)} total monotonic verses",
             "# Regenerate: uv run scripts/04_find_example_verse.py "
             "--save-examples --top N",
@@ -441,8 +454,12 @@ def main(
         ]
         for rank, row in enumerate(top_df.iter_rows(named=True), 1):
             ref = row["verse"]
+            gk = greek_verses.get(ref, "(not available)")
             lines.append("=" * 80)
-            lines.append(f"#{rank}  {ref}  (spread: {row['spread']:.3f})")
+            lines.append(
+                f"#{rank}  {ref}  "
+                f"(greek_len: {row['greek_len']}, spread: {row['spread']:.3f})"
+            )
             lines.append(
                 f"  Group means: Literal={row['Literal']:.3f}  "
                 f"Formal={row['Formal']:.3f}  Dynamic={row['Dynamic']:.3f}  "
