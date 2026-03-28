@@ -95,7 +95,7 @@ FIG_WIDTH = 16  # base figure width in inches (scaled by WIDTH_SCALE)
 # HORIZONTAL LAYOUT (x-axis, in 0–1 figure coords)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-LEFT_MARGIN = 0.04  # left edge of content
+LEFT_MARGIN = 0.00  # left edge of content
 ABBREV_X = 0.04  # left-align anchor for abbreviations
 TEXT_X = 0.14  # left edge of translation text
 SCORE_X = 0.96  # right-align anchor for scores
@@ -143,13 +143,13 @@ DATA = {
         (
             "Literal",
             [
-                ("DLNT", 'Let the one having ears, hear".', 0.547),
+                ("DLNT", '"Let the one having ears, hear".', 0.547),
             ],
         ),
         (
             "Formal",
             [
-                ("NRSVue", 'Let anyone with ears listen!"', 0.647),
+                ("NRSVue", '"Let anyone with ears listen!"', 0.647),
             ],
         ),
         (
@@ -157,7 +157,7 @@ DATA = {
             [
                 (
                     "NLT",
-                    'Anyone with ears to hear should listen and understand."',
+                    '"Anyone with ears to hear should listen and understand."',
                     0.656,
                 ),
             ],

@@ -57,17 +57,19 @@ fetch-fonts:
         exit 0
     fi
     mkdir -p "$font_dir"
-    echo "Downloading DM Sans..."
-    curl -sL "https://fonts.google.com/download?family=DM+Sans" -o /tmp/dm-sans.zip
-    unzip -qo /tmp/dm-sans.zip -d /tmp/dm-sans
-    find /tmp/dm-sans -name "*.ttf" ! -name "*Italic*" -exec cp {} "$font_dir/" \;
-    rm -rf /tmp/dm-sans /tmp/dm-sans.zip
-    echo "Downloading Newsreader..."
-    curl -sL "https://fonts.google.com/download?family=Newsreader" -o /tmp/newsreader.zip
-    unzip -qo /tmp/newsreader.zip -d /tmp/newsreader
-    find /tmp/newsreader -name "*.ttf" ! -name "*Italic*" -exec cp {} "$font_dir/" \;
-    rm -rf /tmp/newsreader /tmp/newsreader.zip
-    echo "Fonts downloaded to $font_dir"
+    # Use local poster/fonts/ if available, otherwise download
+    if ls poster/fonts/*.ttf &>/dev/null; then
+        echo "Copying fonts from poster/fonts/..."
+        cp poster/fonts/*.ttf "$font_dir/"
+    else
+        base="https://raw.githubusercontent.com/google/fonts/main/ofl"
+        echo "Downloading DM Sans..."
+        curl -sfL "$base/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf"          -o "$font_dir/DMSans.ttf"
+        echo "Downloading Newsreader..."
+        curl -sfL "$base/newsreader/Newsreader%5Bopsz%2Cwght%5D.ttf"   -o "$font_dir/Newsreader.ttf"
+        curl -sfL "$base/newsreader/Newsreader-Italic%5Bopsz%2Cwght%5D.ttf" -o "$font_dir/Newsreader-Italic.ttf"
+    fi
+    echo "Fonts ready in $font_dir"
 
 # Generate poster figures (violin+strip, heatmaps, PCA)
 generate-poster-figures:

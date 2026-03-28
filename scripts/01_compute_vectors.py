@@ -132,7 +132,7 @@ def process_language(lang: str, hf_dir: Path) -> tuple[pl.DataFrame, pl.DataFram
     interlinear_zeros = np.zeros((n_chapters, n_dim))
     combined_for_pca = np.vstack([intervention_vectors, interlinear_zeros])
 
-    pca = PCA(n_components=2)
+    pca = PCA(n_components=2, random_state=42)
     pca.fit(combined_for_pca)
 
     # Transform intervention vectors

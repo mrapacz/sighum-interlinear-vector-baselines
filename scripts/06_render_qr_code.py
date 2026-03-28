@@ -12,7 +12,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-DEFAULT_URL = "https://mrapacz.com/eacl2026"
+DEFAULT_URL = "https://mrapacz.com/sighum2026"
 DEFAULT_OUTPUT = Path("figures/poster/qr.png")
 
 

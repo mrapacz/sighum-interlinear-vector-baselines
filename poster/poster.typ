@@ -95,7 +95,7 @@
   // Right: QR code
   [
     #image("../figures/poster/qr.png", width: 100mm)
-    #align(center, text(size: 22pt, fill: text-secondary)[mrapacz.com/eacl2026])
+    #align(center, text(size: 22pt, fill: text-secondary)[mrapacz.com/sighum2026])
   ],
 )
 

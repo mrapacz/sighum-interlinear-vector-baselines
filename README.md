@@ -29,12 +29,17 @@ poster/
   poster.pdf                # Rendered poster
 ```
 
+## Prerequisites
+
+- **Python ≥ 3.11**
+- **[`uv`](https://docs.astral.sh/uv/)** — install with `pip install uv` or `curl -LsSf https://astral.sh/uv/install.sh | sh`
+
+All other dependencies are handled automatically via [inline script metadata (PEP 723)](https://packaging.python.org/en/latest/specifications/inline-script-metadata/) — `uv run` creates isolated environments on the fly.
+
 ## Quick Start
 
-All scripts are self-contained with [inline dependency metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/) and can be run with [`uv`](https://docs.astral.sh/uv/).
-
 ```bash
-# 1. Download data from HuggingFace (~360 MB)
+# 1. Download data from HuggingFace (~360 MB download, ~820 MB on disk including cache)
 uv run scripts/00_fetch_data.py
 
 # 2. Compute intervention vectors and PCA
@@ -44,7 +49,7 @@ uv run scripts/01_compute_vectors.py
 uv run scripts/02_generate_figures.py
 ```
 
-Or use the task runner:
+Or use the [`just`](https://github.com/casey/just) task runner (optional):
 
 ```bash
 just fetch-data      # step 1
@@ -59,7 +64,7 @@ just reproduce       # steps 2 + 3
 uv run scripts/00_fetch_data.py
 ```
 
-Downloads raw embeddings and metadata from the [HuggingFace dataset](https://huggingface.co/datasets/mrapacz/sighum-interlinear-vector-baselines) and caches them in `.cache/hf-data/`.
+Downloads raw embeddings and metadata from the [HuggingFace dataset](https://huggingface.co/datasets/mrapacz/sighum-interlinear-vector-baselines) and caches them in `.cache/hf-data/`. No HuggingFace authentication is required (the dataset is public).
 
 ### 2. Compute Intervention Vectors
 

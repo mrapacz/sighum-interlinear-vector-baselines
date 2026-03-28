@@ -145,7 +145,7 @@ def _(ListedColormap, load_palette):
 def _(plt):
     """Set matplotlib style."""
     plt.rcParams["font.family"] = "sans-serif"
-    plt.rcParams["font.sans-serif"] = ["Arial"]
+    plt.rcParams["font.sans-serif"] = ["Arial", "DejaVu Sans", "Liberation Sans"]
 
 
 @app.cell
