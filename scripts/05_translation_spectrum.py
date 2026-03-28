@@ -96,8 +96,8 @@ FIG_WIDTH = 16  # base figure width in inches (scaled by WIDTH_SCALE)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 LEFT_MARGIN = 0.04  # left edge of content
-ABBREV_X = 0.10  # right-align anchor for abbreviations
-TEXT_X = 0.12  # left edge of translation text
+ABBREV_X = 0.04  # left-align anchor for abbreviations
+TEXT_X = 0.14  # left edge of translation text
 SCORE_X = 0.96  # right-align anchor for scores
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -353,7 +353,7 @@ def render_figure(data=DATA):
                 fontproperties=fonts["abbrev"],
                 color=TEXT_TERTIARY,
                 va="center",
-                ha="right",
+                ha="left",
             )
             ax.text(
                 TEXT_X,
