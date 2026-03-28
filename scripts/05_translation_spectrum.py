@@ -126,17 +126,14 @@ SAVE_DPI = 300  # output resolution
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 DATA = {
-    "reference": "Matthew 22:14",
+    "reference": "Matthew 13:9",
     "source_edition": "SBLGNT",
     # Interlinear: list of (greek_word, english_gloss) pairs
     "interlinear": [
-        ("πολλοὶ", "many"),
-        ("γάρ", "for"),
-        ("εἰσιν", "are"),
-        ("κλητοὶ", "called"),
-        ("ὀλίγοι", "few"),
-        ("δὲ", "however"),
-        ("ἐκλεκτοί", "chosen"),
+        ("ὁ", "The [one]"),
+        ("ἔχων", "having"),
+        ("ὦτα", "ears"),
+        ("ἀκουέτω", "let him hear"),
     ],
     # Groups: list of (group_name, [(abbreviation, full_text, score), ...])
     # Each group can contain multiple translations.
@@ -146,22 +143,22 @@ DATA = {
         (
             "Literal",
             [
-                ("YLT", "for many are called, and few chosen.", 0.604),
+                ("DLNT", 'Let the one having ears, hear".', 0.547),
             ],
         ),
         (
             "Formal",
             [
-                ("NWT", "For there are many invited, but few chosen.", 0.612),
+                ("NRSVue", 'Let anyone with ears listen!"', 0.647),
             ],
         ),
         (
             "Dynamic",
             [
                 (
-                    "GNT",
-                    'And Jesus concluded, "Many are invited, but few are chosen."',
-                    0.826,
+                    "NLT",
+                    'Anyone with ears to hear should listen and understand."',
+                    0.656,
                 ),
             ],
         ),
@@ -170,8 +167,8 @@ DATA = {
             [
                 (
                     "MSG",
-                    "That's what I mean when I say, 'Many get invited; only a few make it.'",
-                    0.752,
+                    '"Are you listening to this? Really listening?"',
+                    0.903,
                 ),
             ],
         ),
