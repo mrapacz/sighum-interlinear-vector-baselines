@@ -460,6 +460,16 @@ def main(
     # Drop verses with no Greek text (SBLGNT numbering gaps)
     monotonic = monotonic.filter(pl.col("greek_len") > 0)
 
+    # ── Identify interlinear baseline ─────────────────────────────
+    entries = {
+        e["canonical_id"]: e
+        for e in manifest["translations"]
+        if e["language"] == lang
+    }
+    inter_id = next(
+        (cid for cid, e in entries.items() if "interlinear" in cid), None
+    )
+
     # ── Display top N ─────────────────────────────────────────────
     top_df = monotonic.head(top)
 
@@ -487,6 +497,13 @@ def main(
 
         verse_data = dist_df.filter(pl.col("verse") == ref).sort("dist")
         trans_lines = []
+        # Interlinear baseline (d=0 by definition)
+        if inter_id:
+            inter_text = verse_texts.get((ref, inter_id), "")
+            line = "Interlinear (d=0.000)"
+            if inter_text:
+                line += f": {inter_text}"
+            trans_lines.append(line)
         for strategy in STRATEGY_ORDER:
             group = verse_data.filter(pl.col("mode") == strategy)
             for vrow in group.iter_rows(named=True):
@@ -544,6 +561,12 @@ def main(
             lines.append("=" * 80)
             gk = greek_verses.get(ref, "(not available)")
             lines.append(f"  GREEK: {gk}")
+            # Interlinear baseline (d=0 by definition)
+            if inter_id:
+                inter_text = verse_texts.get((ref, inter_id), "")
+                lines.append(
+                    f"  [{'Interlinear':12s}] {'INTER':8s} (d=0.000): {inter_text}"
+                )
             lines.append("")
 
             verse_data = dist_df.filter(pl.col("verse") == ref).sort("dist")
