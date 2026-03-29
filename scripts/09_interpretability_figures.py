@@ -247,7 +247,7 @@ def fig_08_english_per_translation(pca_df: pl.DataFrame) -> plt.Figure:
         tdf = eng.filter(pl.col("translation_id") == tid)
         tx, ty = tdf["pca_x"].to_numpy(), tdf["pca_y"].to_numpy()
         tx, ty = _shuffle_arrays(tx, ty)
-        ax.scatter(tx, ty, c=color, s=6, alpha=0.3, edgecolors="none", label=abbr)
+        ax.scatter(tx, ty, c=color, s=6, alpha=0.6, edgecolors="none", label=abbr)
         mx, my = tdf["pca_x"].mean(), tdf["pca_y"].mean()
         ax.scatter([mx], [my], c=color, s=100, edgecolors="black",
                    linewidths=1, zorder=5, marker="D")
@@ -287,7 +287,7 @@ def fig_09_english_fnv_ojb_genre(pca_df: pl.DataFrame) -> plt.Figure:
         y = tdf["pca_y"].to_numpy()
         gc = np.array([GENRE_COLORS.get(g, "#BBBBBB") for g in genres])
         x, y, gc = _shuffle_arrays(x, y, gc)
-        ax.scatter(x, y, c=gc, s=6, alpha=0.3, edgecolors="none")
+        ax.scatter(x, y, c=gc, s=6, alpha=0.6, edgecolors="none")
         ax.axhline(0, color="grey", lw=0.5, ls="--")
         ax.axvline(0, color="grey", lw=0.5, ls="--")
         ax.set_xlabel("PC1"); ax.set_ylabel("PC2")
@@ -326,7 +326,7 @@ def fig_10_french_per_translation(pca_df: pl.DataFrame) -> plt.Figure:
         tdf = fra.filter(pl.col("translation_id") == tid)
         tx, ty = tdf["pca_x"].to_numpy(), tdf["pca_y"].to_numpy()
         tx, ty = _shuffle_arrays(tx, ty)
-        ax.scatter(tx, ty, c=color, s=6, alpha=0.3, edgecolors="none", label=abbr)
+        ax.scatter(tx, ty, c=color, s=6, alpha=0.6, edgecolors="none", label=abbr)
         mx, my = tdf["pca_x"].mean(), tdf["pca_y"].mean()
         ax.scatter([mx], [my], c=color, s=100, edgecolors="black",
                    linewidths=1, zorder=5, marker="D")
