@@ -60,14 +60,20 @@ GENRES = {
 }
 
 GENRE_COLORS = {
-    "gospel": "#4477AA", "acts": "#66CCEE", "pauline": "#228833",
-    "general_epistle": "#CCBB44", "hebrews": "#EE6677", "revelation": "#AA3377",
+    "gospel": "#03045E",            # Indigo/Midnight
+    "acts": "#005F73",              # Sapphire Blue
+    "pauline": "#0A9396",           # Jade Green
+    "general_epistle": "#CA6702",   # Topaz/Rust
+    "hebrews": "#9B2226",           # Ruby Red
+    "revelation": "#7209B7",        # Amethyst
     "unknown": "#BBBBBB",
 }
 
 MODE_COLORS = {
-    "Literal": "#117733", "Formal": "#4477AA",
-    "Dynamic": "#DDCC77", "Paraphrase": "#CC6677",
+    "Literal": "#1B4965",    # Navy Blue
+    "Formal": "#4C956C",     # Moss Green
+    "Dynamic": "#C49000",    # Deep Mustard
+    "Paraphrase": "#E63946", # Crimson Red
 }
 
 RNG = np.random.default_rng(42)
@@ -114,7 +120,7 @@ def fig_01_pca_scatter_by_genre(pca_df: pl.DataFrame) -> plt.Figure:
         genres = [GENRES.get(b, "unknown") for b in books]
         colors = np.array([GENRE_COLORS.get(g, "#BBBBBB") for g in genres])
         x, y, colors = _shuffle_arrays(x, y, colors)
-        ax.scatter(x, y, c=colors, s=2, alpha=0.15, edgecolors="none")
+        ax.scatter(x, y, c=colors, s=2, edgecolors="none")
         ax.axhline(0, color="grey", lw=0.5, ls="--")
         ax.axvline(0, color="grey", lw=0.5, ls="--")
         ax.set_title(LANGUAGE_NAMES[lang], fontsize=12)
@@ -141,7 +147,7 @@ def fig_02_pca_scatter_all_points(pca_df: pl.DataFrame) -> plt.Figure:
         genres = [GENRES.get(b, "unknown") for b in books]
         colors = np.array([GENRE_COLORS.get(g, "#BBBBBB") for g in genres])
         x, y, colors = _shuffle_arrays(x, y, colors)
-        ax.scatter(x, y, c=colors, s=2, alpha=0.15, edgecolors="none")
+        ax.scatter(x, y, c=colors, s=2, edgecolors="none")
         ax.axhline(0, color="grey", lw=0.5, ls="--")
         ax.axvline(0, color="grey", lw=0.5, ls="--")
         ax.set_title(LANGUAGE_NAMES[lang], fontsize=12)
@@ -172,7 +178,7 @@ def fig_03_genre_centroid_arrows(
         genres = [GENRES.get(b, "unknown") for b in books]
         colors = np.array([GENRE_COLORS.get(g, "#BBBBBB") for g in genres])
         x_s, y_s, colors_s = _shuffle_arrays(x, y, colors)
-        ax.scatter(x_s, y_s, c=colors_s, s=2, alpha=0.15, edgecolors="none")
+        ax.scatter(x_s, y_s, c=colors_s, s=2, edgecolors="none")
         # Genre centroids with arrows from origin (computed on chapter means)
         cm = chapter_means.filter(pl.col("language") == lang)
         gm = cm.group_by("genre").agg([
@@ -206,7 +212,7 @@ def fig_07_pca_scatter_by_mode(pca_df: pl.DataFrame) -> plt.Figure:
         modes = ldf["mode"].to_list()
         colors = np.array([MODE_COLORS.get(str(m), "#888888") for m in modes])
         x, y, colors = _shuffle_arrays(x, y, colors)
-        ax.scatter(x, y, c=colors, s=2, alpha=0.15, edgecolors="none")
+        ax.scatter(x, y, c=colors, s=2, edgecolors="none")
         ax.axhline(0, color="grey", lw=0.5, ls="--")
         ax.axvline(0, color="grey", lw=0.5, ls="--")
         ax.set_title(LANGUAGE_NAMES[lang], fontsize=12)
@@ -224,11 +230,11 @@ def fig_07_pca_scatter_by_mode(pca_df: pl.DataFrame) -> plt.Figure:
 
 def fig_08_english_per_translation(pca_df: pl.DataFrame) -> plt.Figure:
     HIGHLIGHT = {
-        "first-nations-version": ("FNV", "#CC3311"),
-        "orthodox-jewish-bible": ("OJB", "#0077BB"),
-        "complete-jewish-bible": ("CJB", "#009988"),
-        "the-message-bible": ("MSG", "#EE7733"),
-        "easyenglish-bible": ("EASY", "#33BBEE"),
+        "first-nations-version": ("FNV", "#00509E"),    # Cobalt Blue
+        "orthodox-jewish-bible": ("OJB", "#D95D39"),    # Burnt Orange
+        "complete-jewish-bible": ("CJB", "#218380"),    # Teal/Forest
+        "the-message-bible": ("MSG", "#B10F2E"),        # Deep Berry
+        "easyenglish-bible": ("EASY", "#313638"),       # Dark Slate
     }
     eng = pca_df.filter(pl.col("language") == "eng")
     trans_ids = eng["translation_id"].unique().sort().to_list()
@@ -238,7 +244,7 @@ def fig_08_english_per_translation(pca_df: pl.DataFrame) -> plt.Figure:
     bg = eng.filter(~pl.col("translation_id").is_in(list(HIGHLIGHT.keys())))
     bx, by = bg["pca_x"].to_numpy(), bg["pca_y"].to_numpy()
     bx, by = _shuffle_arrays(bx, by)
-    ax.scatter(bx, by, c="#BBBBBB", s=3, alpha=0.1, edgecolors="none")
+    ax.scatter(bx, by, c="#D8D8D8", s=3, edgecolors="none")
     # Highlighted translations (each shuffled)
     for tid in trans_ids:
         if tid not in HIGHLIGHT:
@@ -247,7 +253,7 @@ def fig_08_english_per_translation(pca_df: pl.DataFrame) -> plt.Figure:
         tdf = eng.filter(pl.col("translation_id") == tid)
         tx, ty = tdf["pca_x"].to_numpy(), tdf["pca_y"].to_numpy()
         tx, ty = _shuffle_arrays(tx, ty)
-        ax.scatter(tx, ty, c=color, s=6, alpha=0.6, edgecolors="none", label=abbr)
+        ax.scatter(tx, ty, c=color, s=6, edgecolors="none", label=abbr)
         mx, my = tdf["pca_x"].mean(), tdf["pca_y"].mean()
         ax.scatter([mx], [my], c=color, s=100, edgecolors="black",
                    linewidths=1, zorder=5, marker="D")
@@ -267,8 +273,8 @@ def fig_08_english_per_translation(pca_df: pl.DataFrame) -> plt.Figure:
 
 def fig_09_english_fnv_ojb_genre(pca_df: pl.DataFrame) -> plt.Figure:
     FOCUS = {
-        "first-nations-version": ("FNV", "#CC3311"),
-        "orthodox-jewish-bible": ("OJB", "#0077BB"),
+        "first-nations-version": ("FNV", "#00509E"),    # Cobalt Blue
+        "orthodox-jewish-bible": ("OJB", "#D95D39"),    # Burnt Orange
     }
     eng = pca_df.filter(pl.col("language") == "eng")
     fig, axes = plt.subplots(1, 2, figsize=(14, 7))
@@ -278,7 +284,7 @@ def fig_09_english_fnv_ojb_genre(pca_df: pl.DataFrame) -> plt.Figure:
         bx = bg["pca_x"].to_numpy()
         by = bg["pca_y"].to_numpy()
         bx, by = _shuffle_arrays(bx, by)
-        ax.scatter(bx, by, c="#BBBBBB", s=3, alpha=0.1, edgecolors="none")
+        ax.scatter(bx, by, c="#D8D8D8", s=3, edgecolors="none")
         # Foreground: this translation colored by genre
         tdf = eng.filter(pl.col("translation_id") == tid)
         books = tdf["chapter"].str.extract(r"^(\w+)").to_list()
@@ -287,7 +293,7 @@ def fig_09_english_fnv_ojb_genre(pca_df: pl.DataFrame) -> plt.Figure:
         y = tdf["pca_y"].to_numpy()
         gc = np.array([GENRE_COLORS.get(g, "#BBBBBB") for g in genres])
         x, y, gc = _shuffle_arrays(x, y, gc)
-        ax.scatter(x, y, c=gc, s=6, alpha=0.6, edgecolors="none")
+        ax.scatter(x, y, c=gc, s=6, edgecolors="none")
         ax.axhline(0, color="grey", lw=0.5, ls="--")
         ax.axvline(0, color="grey", lw=0.5, ls="--")
         ax.set_xlabel("PC1"); ax.set_ylabel("PC2")
@@ -305,11 +311,11 @@ def fig_09_english_fnv_ojb_genre(pca_df: pl.DataFrame) -> plt.Figure:
 
 def fig_10_french_per_translation(pca_df: pl.DataFrame) -> plt.Figure:
     HIGHLIGHT = {
-        "parole-de-vie": ("PDV", "#CC3311"),
-        "parole-vivante": ("PVV", "#EE7733"),
-        "bible-francais-courant": ("BFC", "#009988"),
-        "french-king-james-bible": ("KJF", "#0077BB"),
-        "segond-21": ("S21", "#AA3377"),
+        "parole-de-vie": ("PDV", "#00509E"),             # Cobalt Blue
+        "parole-vivante": ("PVV", "#D95D39"),            # Burnt Orange
+        "bible-francais-courant": ("BFC", "#218380"),    # Teal/Forest
+        "french-king-james-bible": ("KJF", "#B10F2E"),   # Deep Berry
+        "segond-21": ("S21", "#313638"),                 # Dark Slate
     }
     fra = pca_df.filter(pl.col("language") == "fra")
     trans_ids = fra["translation_id"].unique().sort().to_list()
@@ -318,7 +324,7 @@ def fig_10_french_per_translation(pca_df: pl.DataFrame) -> plt.Figure:
     bg = fra.filter(~pl.col("translation_id").is_in(list(HIGHLIGHT.keys())))
     bx, by = bg["pca_x"].to_numpy(), bg["pca_y"].to_numpy()
     bx, by = _shuffle_arrays(bx, by)
-    ax.scatter(bx, by, c="#BBBBBB", s=3, alpha=0.1, edgecolors="none")
+    ax.scatter(bx, by, c="#D8D8D8", s=3, edgecolors="none")
     for tid in trans_ids:
         if tid not in HIGHLIGHT:
             continue
@@ -326,7 +332,7 @@ def fig_10_french_per_translation(pca_df: pl.DataFrame) -> plt.Figure:
         tdf = fra.filter(pl.col("translation_id") == tid)
         tx, ty = tdf["pca_x"].to_numpy(), tdf["pca_y"].to_numpy()
         tx, ty = _shuffle_arrays(tx, ty)
-        ax.scatter(tx, ty, c=color, s=6, alpha=0.6, edgecolors="none", label=abbr)
+        ax.scatter(tx, ty, c=color, s=6, edgecolors="none", label=abbr)
         mx, my = tdf["pca_x"].mean(), tdf["pca_y"].mean()
         ax.scatter([mx], [my], c=color, s=100, edgecolors="black",
                    linewidths=1, zorder=5, marker="D")
