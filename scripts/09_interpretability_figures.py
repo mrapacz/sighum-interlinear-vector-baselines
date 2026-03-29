@@ -102,29 +102,29 @@ def _load_data() -> tuple[pl.DataFrame, pl.DataFrame, pl.DataFrame]:
     return pca_df, meta_df, chapter_means
 
 
-# ── Figure 01: PCA scatter colored by genre (chapter means) ──────
+# ── Figure 01: PCA scatter colored by genre ──────────────────────
 
-def fig_01_pca_scatter_by_genre(chapter_means: pl.DataFrame) -> plt.Figure:
+def fig_01_pca_scatter_by_genre(pca_df: pl.DataFrame) -> plt.Figure:
     fig, axes = plt.subplots(1, 5, figsize=(25, 5))
     for ax, lang in zip(axes, LANGUAGES):
-        ldf = chapter_means.filter(pl.col("language") == lang)
-        x = ldf["mean_x"].to_numpy()
-        y = ldf["mean_y"].to_numpy()
-        genres = ldf["genre"].to_list()
+        ldf = pca_df.filter(pl.col("language") == lang)
+        x = ldf["pca_x"].to_numpy()
+        y = ldf["pca_y"].to_numpy()
+        books = ldf["chapter"].str.extract(r"^(\w+)").to_list()
+        genres = [GENRES.get(b, "unknown") for b in books]
         colors = np.array([GENRE_COLORS.get(g, "#BBBBBB") for g in genres])
         x, y, colors = _shuffle_arrays(x, y, colors)
-        ax.scatter(x, y, c=colors, s=12, alpha=0.7, edgecolors="none")
+        ax.scatter(x, y, c=colors, s=2, alpha=0.15, edgecolors="none")
         ax.axhline(0, color="grey", lw=0.5, ls="--")
         ax.axvline(0, color="grey", lw=0.5, ls="--")
         ax.set_title(LANGUAGE_NAMES[lang], fontsize=12)
         ax.set_xlabel("PC1"); ax.set_ylabel("PC2")
         ax.set_aspect("equal")
-    # Legend
     for genre, color in GENRE_COLORS.items():
         if genre != "unknown":
             axes[-1].scatter([], [], c=color, s=30, label=genre)
     axes[-1].legend(fontsize=7, loc="upper right")
-    fig.suptitle("PCA scatter by genre (chapter means)", fontsize=14)
+    fig.suptitle("PCA scatter by genre", fontsize=14)
     fig.tight_layout()
     return fig
 
@@ -158,18 +158,24 @@ def fig_02_pca_scatter_all_points(pca_df: pl.DataFrame) -> plt.Figure:
 
 # ── Figure 03: Genre centroid arrows ──────────────────────────────
 
-def fig_03_genre_centroid_arrows(chapter_means: pl.DataFrame) -> plt.Figure:
+def fig_03_genre_centroid_arrows(
+    pca_df: pl.DataFrame,
+    chapter_means: pl.DataFrame,
+) -> plt.Figure:
     fig, axes = plt.subplots(1, 5, figsize=(25, 5))
     for ax, lang in zip(axes, LANGUAGES):
-        ldf = chapter_means.filter(pl.col("language") == lang)
-        x = ldf["mean_x"].to_numpy()
-        y = ldf["mean_y"].to_numpy()
-        genres = ldf["genre"].to_list()
+        # Background: all translation×chapter points
+        ldf = pca_df.filter(pl.col("language") == lang)
+        x = ldf["pca_x"].to_numpy()
+        y = ldf["pca_y"].to_numpy()
+        books = ldf["chapter"].str.extract(r"^(\w+)").to_list()
+        genres = [GENRES.get(b, "unknown") for b in books]
         colors = np.array([GENRE_COLORS.get(g, "#BBBBBB") for g in genres])
         x_s, y_s, colors_s = _shuffle_arrays(x, y, colors)
-        ax.scatter(x_s, y_s, c=colors_s, s=8, alpha=0.4, edgecolors="none")
-        # Genre centroids with arrows from origin
-        gm = ldf.group_by("genre").agg([
+        ax.scatter(x_s, y_s, c=colors_s, s=2, alpha=0.15, edgecolors="none")
+        # Genre centroids with arrows from origin (computed on chapter means)
+        cm = chapter_means.filter(pl.col("language") == lang)
+        gm = cm.group_by("genre").agg([
             pl.col("mean_x").mean().alias("gx"),
             pl.col("mean_y").mean().alias("gy"),
         ])
@@ -267,6 +273,13 @@ def fig_09_english_fnv_ojb_genre(pca_df: pl.DataFrame) -> plt.Figure:
     eng = pca_df.filter(pl.col("language") == "eng")
     fig, axes = plt.subplots(1, 2, figsize=(14, 7))
     for ax, (tid, (abbr, color)) in zip(axes, FOCUS.items()):
+        # Background: all other English translations
+        bg = eng.filter(pl.col("translation_id") != tid)
+        bx = bg["pca_x"].to_numpy()
+        by = bg["pca_y"].to_numpy()
+        bx, by = _shuffle_arrays(bx, by)
+        ax.scatter(bx, by, c="#BBBBBB", s=3, alpha=0.1, edgecolors="none")
+        # Foreground: this translation colored by genre
         tdf = eng.filter(pl.col("translation_id") == tid)
         books = tdf["chapter"].str.extract(r"^(\w+)").to_list()
         genres = [GENRES.get(b, "unknown") for b in books]
@@ -556,19 +569,12 @@ def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     pca_df, meta_df, chapter_means = _load_data()
 
-    # Dispatch table: figure functions that need different args
-    needs_chapter_means = {"fig_01", "fig_03", "fig_04"}
-    needs_pca_df = {"fig_02", "fig_07", "fig_08", "fig_09", "fig_10", "fig_05"}
-
     saved_paths = []
     for name, func in FIGURE_ORDER:
         print(f"  Generating {name}...")
         fname = func.__name__
-        if "chapter_means" in fname or fname in (
-            "fig_01_pca_scatter_by_genre",
-            "fig_03_genre_centroid_arrows",
-        ):
-            fig = func(chapter_means)
+        if fname == "fig_03_genre_centroid_arrows":
+            fig = func(pca_df, chapter_means)
         elif fname == "fig_04_feature_correlation_heatmap":
             fig = func(chapter_means)
         else:
