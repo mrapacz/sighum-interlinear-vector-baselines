@@ -287,7 +287,7 @@ def fig_09_english_fnv_ojb_genre(pca_df: pl.DataFrame) -> plt.Figure:
         y = tdf["pca_y"].to_numpy()
         gc = np.array([GENRE_COLORS.get(g, "#BBBBBB") for g in genres])
         x, y, gc = _shuffle_arrays(x, y, gc)
-        ax.scatter(x, y, c=gc, s=15, alpha=0.6, edgecolors="none")
+        ax.scatter(x, y, c=gc, s=6, alpha=0.3, edgecolors="none")
         ax.axhline(0, color="grey", lw=0.5, ls="--")
         ax.axvline(0, color="grey", lw=0.5, ls="--")
         ax.set_xlabel("PC1"); ax.set_ylabel("PC2")
